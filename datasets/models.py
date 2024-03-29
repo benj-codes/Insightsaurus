@@ -6,6 +6,7 @@ import uuid
 class Dataset(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
+    dataset_image = models.ImageField(null=True, blank=True, default="default.jpg")
     source_link = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True)
     vote_total = models.IntegerField(default=0, null=True, blank=True)

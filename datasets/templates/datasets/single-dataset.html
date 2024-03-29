@@ -1,7 +1,9 @@
 {% extends "main.html" %}
 
 {% block content%}
+
 <h1>{{dataset.title}}</h1>
+<img src="{{ dataset.dataset_image.url }}" height="200px">
 <hr>
 {% for tag in dataset.tags.all %}
     <span style="border:1px solid grey">{{tag}}</span>
