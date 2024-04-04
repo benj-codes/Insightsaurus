@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'datasets.apps.DatasetsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
