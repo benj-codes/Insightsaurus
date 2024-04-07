@@ -5,24 +5,9 @@
 <!-- Main Section -->
 <main class="singleProject my-md">
     <div class="container">
-      <div class="layout">
-        <div class="column column--1of3">
-          <h3 class="singleProject__subtitle">Hashtags</h3>
-          <div class="singleProject__toolStack">
-            {% for tag in dataset.tags.all %}
-            <span class="tag tag--pill tag--sub tag--lg">
-              <small>{{tag}}</small>
-            </span>
-            {% endfor %}
-          </div>
-          {% if dataset.source_link %}
-          <a class="singleProject__liveLink" href="#" target="_blank"><i class="im im-external-link"></i>Source Code
-          </a>
-          {% endif %}
-        </div>
         <div class="column column--2of3">
-          <img class="singleProject__preview" src="{{ dataset.dataset_image.url }}" alt="portfolio thumbnail" />
-          <a href="profile.html" class="singleProject__developer">Ben @ Insightsaurus</a>
+          <!-- <img class="singleProject__preview" src="{{ dataset.dataset_image.url }}" alt="portfolio thumbnail" /> -->
+          <!-- <a href="profile.html" class="singleProject__developer">Ben @ Insightsaurus</a> -->
           <h2 class="singleProject__title">{{dataset.title}}</h2>
           <h3 class="singleProject__subtitle">About the Dataset</h3>
           <div class="singleProject__info">
@@ -74,8 +59,5 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    </div>
   </main>
 {% endblock content%}
