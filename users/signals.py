@@ -8,5 +8,5 @@ from django.conf import settings
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user = instance)
-        subject = 'Welcome to your Module Registration System'
+        subject = 'Welcome to Insightsaurus'
         message = 'Your account and profile has now been created.'
