@@ -14,10 +14,7 @@ class Profile(models.Model):
     short_bio = models.CharField(max_length=200, blank=True, null=True)
     bio = models.CharField(max_length=2000, blank=True, null=True)
     profile_image = models.ImageField(null=True, blank=True, upload_to='profiles/', default="profiles/default-profile.png")
-    url_github = models.CharField(max_length=200, blank=True, null=True)
-    url_twitter = models.CharField(max_length=200, blank=True, null=True)
-    url_linkedin = models.CharField(max_length=200, blank=True, null=True)
-    url_website = models.CharField(max_length=200, blank=True, null=True)
+    available = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     id_num = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
