@@ -7,6 +7,27 @@ from django.conf import settings
 @receiver(post_save, sender = User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user = instance)
-        subject = 'Welcome to Insightsaurus'
-        message = 'Your account and profile has now been created.'
+        user = instance
+        profile = Profile.objects.create(
+            user=user,
+            username=user.username,
+            email=user.email,
+            name=user.first_name,
+        )
+
+def deleteUser(sender, instance, **kwargs):
+    user = instance.user
+    user.delete()
+
+def updateUser(sender, instance, created, **kwargs):
+    profile = instance
+    user = profile.user
+    if created == False:
+        user.name = profile.name
+        user.username = profile.username
+        user.email = profile.email
+        user.save()
+
+post_save.connect(create_profile, sender=User)
+post_save.connect(updateUser, sender=Profile)
+post_delete.connect(deleteUser, sender=Profile)

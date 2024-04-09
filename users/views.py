@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile
-from .forms import ModifiedUserCreationForm
+from .forms import ModifiedUserCreationForm, ProfileForm
 
 # Create your views here.
 
@@ -27,7 +27,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profiles')
+            return redirect('datasets')
         else:
             messages.error(request,'Username or password is wrong')
 
@@ -52,7 +52,7 @@ def registerUser(request):
             messages.success(request, 'User account was created')
 
             login(request, user)
-            return redirect('datasets')
+            return redirect('edit-account')
         
         else:
             messages.error(request, 'Could not process account creation')
@@ -74,3 +74,24 @@ def userProfile(request, pk):
 
     context = {'profile':profile, 'skillsWithDesc': skillsWithDesc, 'skillsWithoutDesc': skillsWithoutDesc}
     return render(request, 'users/user-profile.html', context)
+
+@login_required(login_url='login')
+def userAccount(request):
+    profile = request.user.profile
+    skills = profile.skill_set.all()
+    context = {'profile': profile, 'skills': skills}
+    return render(request, 'users/account.html', context)
+
+@login_required(login_url='login')
+def editAccount(request):
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid:
+            form.save()
+
+            return redirect('account')
+
+    context = {'form': form}
+    return render(request, 'users/profile_form.html', context)
