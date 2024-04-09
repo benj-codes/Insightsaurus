@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile
+from .forms import ModifiedUserCreationForm
 
 # Create your views here.
 
 def loginUser(request):
+    page = 'login'
 
     if request.user.is_authenticated:
         return redirect('datasets')
@@ -17,7 +21,7 @@ def loginUser(request):
         try:
             user = User.objects.get(username=username)
         except:
-            print('Username does not exist')
+            messages.error(request, 'Username does not exist')
         
         user = authenticate(request, username=username, password=password)
 
@@ -25,13 +29,37 @@ def loginUser(request):
             login(request, user)
             return redirect('profiles')
         else:
-            print('Username or password is wrong')
+            messages.error(request,'Username or password is wrong')
 
     return render(request, 'users/login-and-register.html')
 
 def logoutUser(request):
     logout(request)
+    messages.error(request, 'User was successfully logged out')
     return redirect('login')
+
+def registerUser(request):
+    page = 'register'
+    form = ModifiedUserCreationForm()
+
+    if request.method == 'POST':
+        form = ModifiedUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+
+            messages.success(request, 'User account was created')
+
+            login(request, user)
+            return redirect('datasets')
+        
+        else:
+            messages.success(request, 'Could not process account creation')
+    
+
+    context = {'page': page, 'form': form}
+    return render(request, 'users/login-and-register.html', context)
 
 def profiles(request):
     profiles = Profile.objects.all()

@@ -1,5 +1,5 @@
 :root {
-  --color-sub: #637CD0;
+  --color-sub: #000000;
 }
 
 .btn--sub {
@@ -31,7 +31,8 @@ img {
 .header {
   position: sticky;
   z-index: 111;
-  background-color: var(--color-sub);
+  /* background-color: var(--color-main); */
+  background: linear-gradient(to bottom, var(--color-main), rgb(136, 206, 253));
   padding: 1.5rem 0;
 }
 
@@ -169,11 +170,14 @@ img {
   Hero Section
 ========================*/
 
+.hero-section.text-center {
+  background: url(../images/data-analysis.jpg);
+}
+
 .hero-section {
   height: 40vh;
   display: flex;
   align-items: center;
-  background-color: var(--color-sub);
 }
 
 .hero-section__box {
@@ -258,7 +262,7 @@ img {
 }
 
 /*=======================
-  Developers
+  Analysts
 ========================*/
 
 .devlist {
@@ -323,6 +327,22 @@ img {
   Profile
 ========================*/
 
+.profile.my-md {
+  background: url(../images/profile-background.png);
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  min-height: 91.7vh;
+}
+
+.column.column--1of3 {
+  margin-top: 20px;
+}
+
+.column.column--2of3 {
+  margin-top: 20px;
+}
+
 .profile .card > .dev {
   padding: 4rem;
 }
@@ -383,6 +403,14 @@ img {
   text-align: justify;
 }
 
+.devInfo__about {
+  color: black;
+}
+
+.devSkill__info {
+  color: black;
+}
+
 .devSkill {
   margin-bottom: 3rem;
 }
@@ -406,7 +434,7 @@ img {
 }
 
 /*=======================
-  Single Projects
+  Single Datasets
 ========================*/
 
 .singleProject .column--1of3 {
@@ -483,11 +511,12 @@ img {
 }
 
 /*=======================
-  Projects Page
+  Datasets Page
 ========================*/
 .projects > .hero-section {
-  background: var(--color-sub-lighter);
+  /* background: var(--color-sub-lighter); */
   height: 30vh;
+  background: url(../images/data-analysis.jpg);
 }
 
 .projects .hero-section__box {
@@ -495,19 +524,19 @@ img {
 }
 
 .projects .hero-section__box > h2 {
-  color: var(--color-sub);
+  color: var(--color-sub-lighter);
 }
 
 .projects .hero-section__box > h2 > span {
   font-weight: 700;
-  color: var(--color-sub);
+  color: var(--color-sub-lighter);
 }
 
 .projectsList {
   margin-top: 8rem;
 }
 
-/*========== Projects ==========*/
+/*========== Datasets ==========*/
 
 .project__thumbnail {
   height: 25rem;
@@ -659,7 +688,7 @@ img {
   left: 0;
   bottom: 0;
   right: 0;
-  background: url(../images/pattern.jpg);
+  background: url(../images/data-analysis.jpg);
 }
 
 .auth > .card {

@@ -35,7 +35,7 @@
                 <img class="project__thumbnail" src="{{ dataset.dataset_image.url }}" alt="project thumbnail" />
                 <div class="card__body">
                   <h3 class="project__title">{{dataset.title}}</h3>
-                  <p><a class="project__author" href="{% url 'dataset' dataset.id_num %}">By Ben @ Insightsaurus</a></p>
+                  <!-- <p><a class="project__author" href="{% url 'dataset' dataset.id_num %}">By Ben @ Insightsaurus</a></p> -->
                   <p class="project--rating">
                     <span style="font-weight: bold;">{{dataset.vote_ratio}}</span> Positive
                     Feedback ({{dataset.vote_total}} Vote{{dataset.vote_total|pluralize:"s"}})
