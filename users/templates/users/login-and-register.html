@@ -21,12 +21,16 @@
       <div class="form__field">
         <label for="formInput#text">{{field.label}} </label>
         {{field}}
+
+        {% if field.help_text %}
+        <p>{{field.help_text}}</p>
+        {% endif %}
       </div>
 
       {% endfor %}
 
       <div class="auth__actions">
-        <input class="btn btn--sub btn--lg" type="submit" value="Sign  In" />
+        <input class="btn btn--sub btn--lg" type="submit" value="Confirm Register" />
       </div>
     </form>
     <div class="auth__alternative">

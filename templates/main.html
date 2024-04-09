@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" />
         <!-- Mumble UI -->
         <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
-        <!-- Dev Search UI -->
+        <!-- CSS -->
         <link rel="stylesheet" href="{% static 'styles/app.css' %}" />
 
         <title>Insightsaurus - The Data Hub!</title>
@@ -20,13 +20,27 @@
     <body>
         {% include 'navbar.html' %}
 
-    {% if messages %}
+    <!-- {% if messages %}
     <ul class="messages">
         {% for message in messages %}
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
     </ul>
+    {% endif %} -->
+
+    {% if messages %}
+
+    {% for message in messages %}
+        <div class="alert alert--{{message.tags}}">
+            <p class="alert__message">{{message}}</p>
+            <button class="alert__close">x</button>
+        </div>
+
+    {% endfor %}
+
     {% endif %}
+
+    
 
         {% block content %}
 

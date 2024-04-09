@@ -35,7 +35,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    messages.error(request, 'User was successfully logged out')
+    messages.info(request, 'User was successfully logged out')
     return redirect('login')
 
 def registerUser(request):
@@ -55,7 +55,7 @@ def registerUser(request):
             return redirect('datasets')
         
         else:
-            messages.success(request, 'Could not process account creation')
+            messages.error(request, 'Could not process account creation')
     
 
     context = {'page': page, 'form': form}
