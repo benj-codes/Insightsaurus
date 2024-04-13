@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Dataset, Review
+from .models import Dataset, Review, Japan
 from .forms import ReviewForm
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -49,3 +49,4 @@ def user_has_reviewed(user, dataset):
      return True
     else:
      return None
+    

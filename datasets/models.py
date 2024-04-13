@@ -3,6 +3,22 @@ import uuid
 from users.models import Profile
 from django.db.models.deletion import CASCADE
 
+# Specific dataset models here.
+
+class Japan(models.Model):
+    year = models.IntegerField()
+    birth_total = models.PositiveIntegerField()
+    birth_male = models.PositiveIntegerField()
+    birth_female = models.PositiveIntegerField()
+    birth_rate = models.FloatField()
+    birth_gender_ratio = models.FloatField()
+    population_total = models.PositiveIntegerField()
+    population_male = models.PositiveIntegerField()
+    population_female = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"Data by Year: {self.year}"
+
 # Create your models here.
 
 class Dataset(models.Model):
@@ -19,7 +35,6 @@ class Dataset(models.Model):
     def __str__(self):
         return self.title
         
-
     
     @property
     def getVoteCount(self):
