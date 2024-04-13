@@ -20,26 +20,28 @@
               {{dataset.vote_ratio}}% Positive Feedback ({{dataset.vote_total}} Vote{{dataset.vote_total|pluralize:"s"}})
             </h5>
 
-            <!-- Check if user has already left a review -->
-            {% if request.user.profile.id_num in dataset.commenters %}
+        {% if user.is_authenticated %}
+          {% if has_reviewed %}
             <p>You have already submitted a Vote/Comment!</p>
 
-            <!-- If they haven't left a review allow form submission -->
-            {% elif request.user.is_authenticated %}
-            <form class="form" action="{% url 'dataset' dataset.id_num %}" method="POST">
-              {% csrf_token %}
-              {% for field in form %}
-              <div class="form__field">
-                <label for="formInput#textarea">{{field.label}}</label>
-                {{field}}
-              </div>
-              {% endfor %}
-              <input class="btn btn--sub btn--lg" type="submit" value="Vote/Comment" />
-            </form>
-            <!-- If they're not logged in take to login page then reroute back to where they were. -->
-            {% else %}
-            <a href="{% url 'login' %}?next={{request.path}}">You must login to Vote/Comment!</a>
+                  <!-- If they haven't left a review allow form submission -->
+          {% elif request.user.is_authenticated %}
+              <form class="form" action="{% url 'dataset' dataset.id_num %}" method="POST">
+                  {% csrf_token %}
+                  {% for field in form %}
+                      <div class="form__field">
+                          <label for="formInput#textarea">{{field.label}}</label>
+                          {{field}}
+                      </div>
+                  {% endfor %}
+                  <input class="btn btn--sub btn--lg" type="submit" value="Vote/Comment" />
+              </form>
+              <!-- If they're not logged in take to login page then reroute back to where they were. -->
             {% endif %}
+          {% else %}
+          <a href="{% url 'login' %}?next={{request.path}}">You must login to Vote/Comment!</a>
+          
+        {% endif %}
             
             <div class="commentList">
               {% for review in dataset.review_set.all %}

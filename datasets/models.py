@@ -18,12 +18,6 @@ class Dataset(models.Model):
 
     def __str__(self):
         return self.title
-    
-    #Create List of id's of users who commented, to prevent multiple comments by same user
-    @property
-    def commenters(self):
-        queryset = self.review_set.all().values_list('owner__id', flat=True)
-        return queryset
         
 
     
