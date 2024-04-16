@@ -20,6 +20,14 @@ def dataset(request, pk):
     datasetObj = Dataset.objects.get(id_num=pk)
     has_reviewed = user_has_reviewed(request.user, datasetObj)
     form = ReviewForm()
+    chart_data = None
+
+    dataset_name = datasetObj.title
+
+    if dataset_name == 'Japan Birth Demographics':
+       japan_data = Japan.objects.all()
+       chart_data = japan_data
+
     # Allow user to comment view
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -35,7 +43,7 @@ def dataset(request, pk):
         return redirect('dataset', pk=datasetObj.id_num)
 
 
-    return render(request, 'datasets/single-dataset.html', {'dataset':datasetObj, 'form':form, 'has_reviewed': has_reviewed,})
+    return render(request, 'datasets/single-dataset.html', {'dataset':datasetObj, 'form':form, 'has_reviewed': has_reviewed, 'chart_data': chart_data})
 
 # Check if user has reviewed dataset
 def user_has_reviewed(user, dataset):
