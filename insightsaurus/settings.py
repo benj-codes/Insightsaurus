@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     
     'datasets.apps.DatasetsConfig',
     'users.apps.UsersConfig',
+
+    'import_export',
 ]
 
 MIDDLEWARE = [
