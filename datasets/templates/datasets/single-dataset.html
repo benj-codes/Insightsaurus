@@ -14,8 +14,9 @@
             {{dataset.description}}
           </div>
 
-          
+            <!-- CHARTS SECTION, JAPAN -->
             {% if chart_data %}
+            <!-- BIRTH TOTAL -->
             <div>
               <canvas id="myChart"></canvas>
             </div>
@@ -45,8 +46,204 @@
               });
             </script>            
             {% endif %}
-          
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
+            <br>
 
+            <!-- BY GENDER -->
+            
+            {% if chart_data %}
+            <div>
+              <canvas id="myChart2"></canvas>
+            </div>
+            
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            
+            <script>
+            const ctx2 = document.getElementById('myChart2');
+            
+            new Chart(ctx2, {
+              type: 'line',
+              data: {
+                labels: [
+                  {% for data in chart_data %} '{{ data.year }}', {% endfor %}
+                ],
+                datasets: [
+                  {
+                    label: 'Male Births',
+                    data: [
+                      {% for data in chart_data %} '{{ data.birth_male }}', {% endfor %}
+                    ],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                  },
+                  {
+                    label: 'Female Births',
+                    data: [
+                      {% for data in chart_data %} '{{ data.birth_female }}', {% endfor %}
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)', 
+                    borderWidth: 1
+                  }
+                ]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+            </script>
+            {% endif %}
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
+            <br>
+
+            <!-- BY BIRTH_RATE -->
+            {% if chart_data %}
+            <div>
+              <canvas id="myChart3"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+            const ctx3 = document.getElementById('myChart3');
+            new Chart(ctx3, {
+              type: 'line',
+              data: {
+                labels: [
+                  {% for data in chart_data %}
+                  '{{ data.year }}',
+                  {% endfor %}
+                ],
+                datasets: [
+                  {
+                    label: 'Birth Rate',
+                    data: [
+                      {% for data in chart_data %}
+                      '{{ data.birth_rate }}',
+                      {% endfor %}
+                    ],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                  }
+                ]
+              },
+              options: {
+              }
+            });
+            </script>
+            {% endif %}
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
+            <br>
+
+            <!-- POPULATION TOTAL -->
+            {% if chart_data %}
+            <div>
+              <canvas id="myChart4"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+            const ctx4 = document.getElementById('myChart4');
+            new Chart(ctx4, {
+              type: 'line',
+              data: {
+                labels: [
+                  {% for data in chart_data %}
+                  '{{ data.year }}',
+                  {% endfor %}
+                ],
+                datasets: [
+                  {
+                    label: 'Population Total',
+                    data: [
+                      {% for data in chart_data %}
+                      '{{ data.population_total }}',
+                      {% endfor %}
+                    ],
+                    borderColor: 'rgba(96, 87, 168, 1)',
+                    backgroundColor: 'rgba(96, 87, 168, 0.2)', 
+                    borderWidth: 1
+                  }
+                ]
+              },
+              options: {
+                
+              }
+            });
+            </script>
+            {% endif %}
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
+            <br>
+
+            <!-- POPULATION BY GENDER -->
+            {% if chart_data %}
+            <div>
+              <canvas id="myChart5"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+            const ctx5 = document.getElementById('myChart5');
+            new Chart(ctx5, {
+              type: 'bar',
+              data: {
+                labels: [
+                  {% for data in chart_data %}
+                  '{{ data.year }}',
+                  {% endfor %}
+                ],
+                datasets: [
+                  {
+                    label: 'Male Population',
+                    data: [
+                      {% for data in chart_data %}
+                      '{{ data.population_male }}',
+                      {% endfor %}
+                    ],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)', 
+                    borderColor: 'rgba(255, 99, 132, 1)', 
+                    borderWidth: 1,
+                    stack: 'population'
+                  },
+                  {
+                    label: 'Female Population',
+                    data: [
+                      {% for data in chart_data %}
+                      '{{ data.population_female }}',
+                      {% endfor %}
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)', 
+                    borderColor: 'rgba(54, 162, 235, 1)', 
+                    borderWidth: 1,
+                    stack: 'population'
+                  }
+                ]
+              },
+              options: {
+              }
+            });
+            </script>
+            {% endif %}
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
+            <br>
+            
+            
+
+
+          <!-- COMMENTS SECTION -->
           <div class="comments">
             <h3 class="singleProject__subtitle">Feedback</h3>
             <h5 class="project--rating">
