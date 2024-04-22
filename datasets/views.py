@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Dataset, Review, Japan
+from .models import Dataset, Review, Japan, FoodWaste
 from .forms import ReviewForm
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -20,13 +20,19 @@ def dataset(request, pk):
     datasetObj = Dataset.objects.get(id_num=pk)
     has_reviewed = user_has_reviewed(request.user, datasetObj)
     form = ReviewForm()
-    chart_data = None
+    # chart_data = None
+    japan_data = None
+    food_data = None
 
     dataset_name = datasetObj.title
 
     if dataset_name == 'Japan Birth Demographics':
-       japan_data = Japan.objects.all()
-       chart_data = japan_data
+        japan_data = Japan.objects.all()
+    #    chart_data = japan_data
+    elif dataset_name == 'Food Waste':
+        food_data = FoodWaste.objects.all()
+    #    chart_data = food_data
+       
 
     # Allow user to comment view
     if request.method == 'POST':
@@ -43,7 +49,7 @@ def dataset(request, pk):
         return redirect('dataset', pk=datasetObj.id_num)
 
 
-    return render(request, 'datasets/single-dataset.html', {'dataset':datasetObj, 'form':form, 'has_reviewed': has_reviewed, 'chart_data': chart_data})
+    return render(request, 'datasets/single-dataset.html', {'dataset':datasetObj, 'form':form, 'has_reviewed': has_reviewed, 'japan_data': japan_data, 'food_data': food_data})
 
 # Check if user has reviewed dataset
 def user_has_reviewed(user, dataset):

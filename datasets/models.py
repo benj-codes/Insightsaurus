@@ -5,6 +5,15 @@ from django.db.models.deletion import CASCADE
 
 # Specific dataset models here.
 
+class FoodWaste(models.Model):
+    country = models.CharField(max_length=255)
+    household_estimate = models.PositiveIntegerField(help_text="Food waste estimate from households in tonnes")
+    retail_estimate = models.PositiveIntegerField(help_text="Food waste estimate from retail in tonnes")
+    food_service_estimate = models.PositiveIntegerField(help_text="Food waste estimate from food service in tonnes")
+
+    def __str__(self):
+        return f"{self.country} - Food Waste Estimates (tonnes)"
+
 class Japan(models.Model):
     year = models.IntegerField()
     birth_total = models.PositiveIntegerField()

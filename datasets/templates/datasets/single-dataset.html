@@ -15,7 +15,7 @@
           </div>
 
             <!-- CHARTS SECTION, JAPAN -->
-            {% if chart_data %}
+            {% if japan_data %}
             <!-- BIRTH TOTAL -->
             <div>
               <canvas id="myChart"></canvas>
@@ -29,10 +29,10 @@
               new Chart(ctx, {
                 type: 'bar',
                 data: {
-                  labels: [{% for data in chart_data %} '{{data.year}}', {% endfor %}],
+                  labels: [{% for data in japan_data %} '{{data.year}}', {% endfor %}],
                   datasets: [{
                     label: 'Birth Total',
-                    data: [{% for data in chart_data %} '{{data.birth_total}}', {% endfor %}],
+                    data: [{% for data in japan_data %} '{{data.birth_total}}', {% endfor %}],
                     borderWidth: 1
                   }]
                 },
@@ -44,15 +44,16 @@
                   }
                 }
               });
-            </script>            
-            {% endif %}
+            </script>
             <br>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
-            <br>
+            <br>           
+            {% endif %}
+            
 
             <!-- BY GENDER -->
             
-            {% if chart_data %}
+            {% if japan_data %}
             <div>
               <canvas id="myChart2"></canvas>
             </div>
@@ -66,13 +67,13 @@
               type: 'line',
               data: {
                 labels: [
-                  {% for data in chart_data %} '{{ data.year }}', {% endfor %}
+                  {% for data in japan_data %} '{{ data.year }}', {% endfor %}
                 ],
                 datasets: [
                   {
                     label: 'Male Births',
                     data: [
-                      {% for data in chart_data %} '{{ data.birth_male }}', {% endfor %}
+                      {% for data in japan_data %} '{{ data.birth_male }}', {% endfor %}
                     ],
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
@@ -81,7 +82,7 @@
                   {
                     label: 'Female Births',
                     data: [
-                      {% for data in chart_data %} '{{ data.birth_female }}', {% endfor %}
+                      {% for data in japan_data %} '{{ data.birth_female }}', {% endfor %}
                     ],
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)', 
@@ -98,13 +99,14 @@
               }
             });
             </script>
-            {% endif %}
             <br>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
-            <br>
+            <br>  
+            {% endif %}
+            
 
             <!-- BY BIRTH_RATE -->
-            {% if chart_data %}
+            {% if japan_data %}
             <div>
               <canvas id="myChart3"></canvas>
             </div>
@@ -117,7 +119,7 @@
               type: 'line',
               data: {
                 labels: [
-                  {% for data in chart_data %}
+                  {% for data in japan_data %}
                   '{{ data.year }}',
                   {% endfor %}
                 ],
@@ -125,7 +127,7 @@
                   {
                     label: 'Birth Rate',
                     data: [
-                      {% for data in chart_data %}
+                      {% for data in japan_data %}
                       '{{ data.birth_rate }}',
                       {% endfor %}
                     ],
@@ -139,13 +141,14 @@
               }
             });
             </script>
-            {% endif %}
             <br>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
-            <br>
+            <br>  
+            {% endif %}
+            
 
             <!-- POPULATION TOTAL -->
-            {% if chart_data %}
+            {% if japan_data %}
             <div>
               <canvas id="myChart4"></canvas>
             </div>
@@ -158,7 +161,7 @@
               type: 'line',
               data: {
                 labels: [
-                  {% for data in chart_data %}
+                  {% for data in japan_data %}
                   '{{ data.year }}',
                   {% endfor %}
                 ],
@@ -166,7 +169,7 @@
                   {
                     label: 'Population Total',
                     data: [
-                      {% for data in chart_data %}
+                      {% for data in japan_data %}
                       '{{ data.population_total }}',
                       {% endfor %}
                     ],
@@ -181,13 +184,14 @@
               }
             });
             </script>
-            {% endif %}
             <br>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
-            <br>
+            <br>  
+            {% endif %}
+            
 
             <!-- POPULATION BY GENDER -->
-            {% if chart_data %}
+            {% if japan_data %}
             <div>
               <canvas id="myChart5"></canvas>
             </div>
@@ -200,7 +204,7 @@
               type: 'bar',
               data: {
                 labels: [
-                  {% for data in chart_data %}
+                  {% for data in japan_data %}
                   '{{ data.year }}',
                   {% endfor %}
                 ],
@@ -208,7 +212,7 @@
                   {
                     label: 'Male Population',
                     data: [
-                      {% for data in chart_data %}
+                      {% for data in japan_data %}
                       '{{ data.population_male }}',
                       {% endfor %}
                     ],
@@ -220,7 +224,7 @@
                   {
                     label: 'Female Population',
                     data: [
-                      {% for data in chart_data %}
+                      {% for data in japan_data %}
                       '{{ data.population_female }}',
                       {% endfor %}
                     ],
@@ -235,10 +239,11 @@
               }
             });
             </script>
-            {% endif %}
             <br>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et sodales mi. Sed ut tempor erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tincidunt consectetur risus, vel hendrerit justo suscipit in. Aenean pretium leo mi. Duis sollicitudin, ante a porta blandit, erat sem tempor nulla, id finibus nisi eros sit amet odio</p>
-            <br>
+            <br>  
+            {% endif %}
+            
             
             
 
