@@ -14,7 +14,9 @@
               <p class="dev__title">{{profile.short_bio}}</p>
               <p class="dev__location">{{profile.location}}</p>
               <br>
-              <a href="#" class="btn btn--sub btn--lg">Send Message </a>
+              {% if request.user.profile.id_num != profile.id_num %}
+              <a href="{% url 'create-message' profile.id_num %}" class="btn btn--sub btn--lg">Send Message </a>
+              {% endif %}
             </div>
           </div>
         </div>
