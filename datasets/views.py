@@ -1,19 +1,27 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Dataset, Review, Japan, FoodWaste
+from .models import Dataset, Review, Japan, FoodWaste, Tag
 from .forms import ReviewForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 #@login_required(Login_url="login")
 
 # Create your views here.
 def datasets(request):
-    datasets = Dataset.objects.all()
-    context = {'datasets': datasets}
+    search_query = ''
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+        print('SEARCH:', search_query)
+
+    tags = Tag.objects.filter(name__icontains=search_query)
+
+    datasets = Dataset.objects.distinct().filter(Q(title__icontains=search_query) | Q(tags__in=tags))
+    context = {'datasets': datasets, 'search_query': search_query}
     return render(request, 'datasets/datasets.html', context)
 
 def dataset(request, pk):
