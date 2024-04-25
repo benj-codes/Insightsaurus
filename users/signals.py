@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from .models import Profile
 from django.conf import settings
+from django.core.mail import send_mail
 
 @receiver(post_save, sender = User)
 def create_profile(sender, instance, created, **kwargs):
@@ -13,6 +14,17 @@ def create_profile(sender, instance, created, **kwargs):
             username=user.username,
             email=user.email,
             name=user.first_name,
+        )
+
+        subject = 'Insightsaurus Email Service.'
+        message = 'Thank you for being a part of Insightsaurus!'
+
+        send_mail(
+            subject,
+            message,
+            'c0011865@outlook.com', #from
+            [profile.email], #to
+            fail_silently=False,
         )
 
 def deleteUser(sender, instance, **kwargs):
