@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-svk3nsjr+aaovq$7gv#j^zzq3-fn)rg9b48lhe2pt6kx1yagpl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
 
     'import_export',
+
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -83,8 +85,12 @@ WSGI_APPLICATION = 'insightsaurus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.environ['AZURE_DB_ENGINE'],
+        'NAME': os.environ['AZURE_DB_NAME'],
+        'PORT': os.environ['AZURE_DB_PORT'],
+        'HOST': os.environ['AZURE_DB_HOST'],
+        'USER': os.environ['AZURE_DB_USER'],
+        'PASSWORD': os.environ['AZURE_DB_PASSWORD'],
     }
 }
 
@@ -133,14 +139,19 @@ DEFAULT_FROM_EMAIL = 'c0011865@outlook.com'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = '/images/'
+# STATIC_URL = 'static/'
+# MEDIA_URL = '/images/'
+
+DEFAULT_FILE_STORAGE = 'insightsaurus.storages.AzureMediaStorage'
+STATICFILES_STORAGE = 'insightsaurus.storages.AzureStaticStorage'
+STATIC_URL = '[c0011865insightsaurus].blob.core.windows.net/static/'
+MEDIA_URL = '[c0011865insightsaurus].blob.core.windows.net/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
