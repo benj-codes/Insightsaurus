@@ -21,12 +21,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-svk3nsjr+aaovq$7gv#j^zzq3-fn)rg9b48lhe2pt6kx1yagpl'
+SECRET_KEY = os.environ['SECRET_KEY']
+
+# Get Azure hostname
+WEBSITE_HOSTNAME = os.environ.get('WEBSITE_HOSTNAME', None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = WEBSITE_HOSTNAME == None
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = [] if DEBUG else [WEBSITE_HOSTNAME, f"{WEBSITE_HOSTNAME}.azurewebsites.net"]
+
+if not DEBUG:
+    CSRF_TRUSTED_ORIGINS = [f'https://{WEBSITE_HOSTNAME}', f"https://{WEBSITE_HOSTNAME}.azurewebsites.net"]
 
 
 # Application definition
